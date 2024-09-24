@@ -27,4 +27,30 @@ def test_endereco_cidade_valido(endereco_valida):
 def test_endereco_uf_valido(endereco_valida):
     assert endereco_valida.uf == Unidade_federativa.BAHIA
 
+def test_endereco_logradouro_vazio_retorna_mensagem_excecao(endereco_valida):
+    with pytest.raises(ValueError, match="O que está sendo solicitado está vazio."): 
+        Endereco("", "15", "N/D", "123456", "Cidade A", 
+            Unidade_federativa.BAHIA)
+        
+def test_endereco_numero_vazio_retorna_mensagem_excecao(endereco_valida):
+    with pytest.raises(ValueError, match="O que está sendo solicitado está vazio."): 
+        Endereco("Rua A", "", "N/D", "123456", "Cidade A", 
+            Unidade_federativa.BAHIA)
+        
+def test_endereco_complemento_vazio_retorna_mensagem_excecao(endereco_valida):
+    with pytest.raises(ValueError, match="O que está sendo solicitado está vazio."): 
+        Endereco("Rua A", "15", "", "123456", "Cidade A", 
+            Unidade_federativa.BAHIA)
+        
+def test_endereco_cep_vazio_retorna_mensagem_excecao(endereco_valida):
+    with pytest.raises(ValueError, match="O que está sendo solicitado está vazio."): 
+        Endereco("Rua A", "15", "N/D", "", "Cidade A", 
+            Unidade_federativa.BAHIA)
+        
+def test_endereco_cidade_vazio_retorna_mensagem_excecao(endereco_valida):
+    with pytest.raises(ValueError, match="O que está sendo solicitado está vazio."): 
+        Endereco("Rua A", "15", "N/D", "123456", "", 
+            Unidade_federativa.BAHIA)
+        
+
             

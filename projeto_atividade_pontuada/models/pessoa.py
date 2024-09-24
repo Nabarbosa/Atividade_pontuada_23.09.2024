@@ -4,7 +4,7 @@ from projeto_atividade_pontuada.models.endereco import Endereco
 class Pessoa(ABC):
     def __init__(self, id: int, nome: str, telefone: str, email: str, endereco: Endereco) -> None:
         self.id = self.__verificar_id(id)
-        self.nome = nome
+        self.nome = self.__verificar_nome_pessoa(nome)
         self.telefone = telefone
         self.email = email
         self.endereco = endereco
@@ -16,6 +16,13 @@ class Pessoa(ABC):
         if not isinstance(id, int):
             raise TypeError("Deve conter apenas número.")
         return id
+    
+    def __verificar_nome_pessoa(self, nome):
+        if nome == "":
+            raise ValueError("O que está sendo solicitado está vazio.")
+        if not isinstance(nome, str):
+            raise TypeError("valor inválido.")
+        return nome
     
     def __str__(self) -> str:
         return (f"\nID: {self.id}"
