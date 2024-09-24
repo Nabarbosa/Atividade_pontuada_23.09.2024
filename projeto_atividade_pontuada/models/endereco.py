@@ -1,4 +1,4 @@
-from models.enums.unidade_federativa import Unidade_federativa
+from projeto_atividade_pontuada.models.enums.unidade_federativa import Unidade_federativa
 
 class Endereco:
     def __init__(self, logradouro: str, numero: str, complemento: str, cep: str, cidade: str, uf: Unidade_federativa) -> None:
