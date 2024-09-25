@@ -34,4 +34,17 @@ def test_pessoa_nome_vazio_retorna_mensagem_excecao(pessoa_valida):
         Pessoa(20, "", "789456123", "marta@gmail.com", 
             Endereco("Rua A", "15", "N/D", "123456", "Cidade A", 
             Unidade_federativa.BAHIA))
+
+def test_pessoa_telefone_vazio_retorna_mensagem_excecao(pessoa_valida):
+    with pytest.raises(ValueError, match="O que está sendo solicitado está vazio."):
+        Pessoa(20, "Marta", "", "marta@gmail.com", 
+            Endereco("Rua A", "15", "N/D", "123456", "Cidade A", 
+            Unidade_federativa.BAHIA))
+        
+def test_pessoa_email_vazio_retorna_mensagem_excecao(pessoa_valida):
+    with pytest.raises(ValueError, match="O que está sendo solicitado está vazio."):
+        Pessoa(20, "Marta", "789456123", "", 
+            Endereco("Rua A", "15", "N/D", "123456", "Cidade A", 
+            Unidade_federativa.BAHIA))
+        
         
