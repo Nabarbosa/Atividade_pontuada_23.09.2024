@@ -6,7 +6,7 @@ from projeto_atividade_pontuada.models.enums.unidade_federativa import Unidade_f
 @pytest.fixture
 def endereco_valida():
     endereco = Endereco("Rua A", "15", "N/D", "123456", "Cidade A", 
-            Unidade_federativa.BAHIA)
+            Unidade_federativa.BAHIA.nome)
     return endereco
 
 def test_endereco_logradouro_valido(endereco_valida):
@@ -25,7 +25,7 @@ def test_endereco_cidade_valido(endereco_valida):
     assert endereco_valida.cidade == "Cidade A"
 
 def test_endereco_uf_valido(endereco_valida):
-    assert endereco_valida.uf == Unidade_federativa.BAHIA
+    assert endereco_valida.uf == Unidade_federativa.BAHIA.nome
 
 def test_endereco_logradouro_vazio_retorna_mensagem_excecao(endereco_valida):
     with pytest.raises(ValueError, match="O que está sendo solicitado está vazio."): 

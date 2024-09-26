@@ -5,7 +5,7 @@ from projeto_atividade_pontuada.models.enums.sexo import Sexo
 from projeto_atividade_pontuada.models.enums.estado_civil import Estado_civil
 
 
-class Fisica(ABC, Pessoa):
+class Fisica():
     def __init__(self, id: int, nome: str, telefone: str, email: str, dataNascimento: str, estado_civil: Estado_civil, sexo: Sexo, endereco: Endereco) -> None:
         super().__init__(id, nome, telefone, email, endereco)
         self.dataNascimento = self.__verificar_dataNascimento(dataNascimento)
