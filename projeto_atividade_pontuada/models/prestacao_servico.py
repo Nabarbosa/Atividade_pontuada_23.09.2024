@@ -1,4 +1,4 @@
-from models.juridica import Juridica
+from projeto_atividade_pontuada.models.juridica import Juridica
 from projeto_atividade_pontuada.models.endereco import Endereco
 # Endereco?
 

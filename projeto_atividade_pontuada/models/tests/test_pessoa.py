@@ -16,7 +16,6 @@ def test_pessoa_id_valido(pessoa_valida):
 def test_pessoa_nome_valida(pessoa_valida):
     assert pessoa_valida.nome == "Marta"
 
-
 def test_pessoa_telefone_valida(pessoa_valida):
     assert pessoa_valida.telefone == "789456123"
 

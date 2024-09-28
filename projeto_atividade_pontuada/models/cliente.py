@@ -1,4 +1,4 @@
-from models.fisica import Fisica
+from projeto_atividade_pontuada.models.fisica import Fisica
 from projeto_atividade_pontuada.models.endereco import Endereco
 from projeto_atividade_pontuada.models.enums.estado_civil import Estado_civil
 from projeto_atividade_pontuada.models.enums.sexo import Sexo
