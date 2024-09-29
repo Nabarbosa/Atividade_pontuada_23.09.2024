@@ -10,7 +10,7 @@ from projeto_atividade_pontuada.models.enums.unidade_federativa import Unidade_f
 @pytest.fixture
 def medico_valido():
     medico = Medico(455, "Carla", "888.777.666.55", "111.222-33", "010.123456", "(71)90000-1111", "medicarla@gmail.com",
-                    "14/03/1965", Setor.SAUDE, 6000, Estado_civil.DIVORCIADO, Sexo.FEMININO, 
+                    "14/03/1965", Setor.SAUDE, 6000.0, Estado_civil.DIVORCIADO, Sexo.FEMININO, 
                     Endereco("Rua Vasco da Gama", "478", "N/D", "123.456.789", "Rio de Janeiro", Unidade_federativa.RIO_DE_JANEIRO), "147852")
     return medico
 
@@ -71,8 +71,75 @@ def test_endereco_medico_uf_valido(medico_valido):
 def test_medico_crm_valida(medico_valido):
     assert medico_valido.crm == "147852"
 
-def test_medico_crm_vazio_retorna_mensagem_excecao(medico_valido):
-    with pytest.raises(ValueError, match="O que está sendo solicitado está vazio."):
+def test_medico_crm_vazio_retorna_mensagem_excecao():
+    with pytest.raises(ValueError, match="O CRM não deve ser vazio."):
         Medico(455, "Carla", "888.777.666.55", "111.222-33", "010.123456", "(71)90000-1111", "medicarla@gmail.com",
-                    "14/03/1965", Setor.SAUDE, 6000, Estado_civil.DIVORCIADO, Sexo.FEMININO, 
+                    "14/03/1965", Setor.SAUDE, 6000.0, Estado_civil.DIVORCIADO, Sexo.FEMININO, 
                     Endereco("Rua Vasco da Gama", "478", "N/D", "123.456.789", "Rio de Janeiro", Unidade_federativa.RIO_DE_JANEIRO), "")
+        
+def test_medico_id_negativa_retorna_mensagem_erro():
+    with pytest.raises(ValueError, match="O id não pode ser negativo."):
+        Medico(-455, "Carla", "888.777.666.55", "111.222-33", "010.123456", "(71)90000-1111", "medicarla@gmail.com",
+                    "14/03/1965", Setor.SAUDE, 6000.0, Estado_civil.DIVORCIADO, Sexo.FEMININO, 
+                    Endereco("Rua Vasco da Gama", "478", "N/D", "123.456.789", "Rio de Janeiro", Unidade_federativa.RIO_DE_JANEIRO), "147852")
+
+def test_medico_id_tipo_invalido_retorna_mensagem_erro():
+    with pytest.raises(TypeError, match="O id deve ser um número inteiro."):
+        Medico("455", "Carla", "888.777.666.55", "111.222-33", "010.123456", "(71)90000-1111", "medicarla@gmail.com",
+                    "14/03/1965", Setor.SAUDE, 6000.0, Estado_civil.DIVORCIADO, Sexo.FEMININO, 
+                    Endereco("Rua Vasco da Gama", "478", "N/D", "123.456.789", "Rio de Janeiro", Unidade_federativa.RIO_DE_JANEIRO), "147852")
+        
+def test_medico_nome_vazio_retorna_mensagem_erro():
+    with pytest.raises(TypeError, match="O nome não deve estar vazio."):
+     Medico(455, "", "888.777.666.55", "111.222-33", "010.123456", "(71)90000-1111", "medicarla@gmail.com",
+                    "14/03/1965", Setor.SAUDE, 6000.0, Estado_civil.DIVORCIADO, Sexo.FEMININO, 
+                    Endereco("Rua Vasco da Gama", "478", "N/D", "123.456.789", "Rio de Janeiro", Unidade_federativa.RIO_DE_JANEIRO), "147852") 
+
+def test_medico_cpf_vazio_invalido_retorna_mensagem_erro():
+    with pytest.raises(TypeError, match="O CPF não deve estar vazio."):
+        Medico(455, "Carla", "", "111.222-33", "010.123456", "(71)90000-1111", "medicarla@gmail.com",
+                    "14/03/1965", Setor.SAUDE, 6000.0, Estado_civil.DIVORCIADO, Sexo.FEMININO, 
+                    Endereco("Rua Vasco da Gama", "478", "N/D", "123.456.789", "Rio de Janeiro", Unidade_federativa.RIO_DE_JANEIRO), "147852")
+        
+def test_medico_rg_vazio_invalido_retorna_mensagem_erro():
+    with pytest.raises(TypeError, match="O rg não deve estar vazio."):
+        Medico(455, "Carla", "888.777.666.55", "", "010.123456", "(71)90000-1111", "medicarla@gmail.com",
+                    "14/03/1965", Setor.SAUDE, 6000.0, Estado_civil.DIVORCIADO, Sexo.FEMININO, 
+                    Endereco("Rua Vasco da Gama", "478", "N/D", "123.456.789", "Rio de Janeiro", Unidade_federativa.RIO_DE_JANEIRO), "147852")
+        
+def test_medico_matricula_vazio_invalido_retorna_mensagem_erro():
+    with pytest.raises(TypeError, match="A matricula não deve estar vazia."):
+        Medico(455, "Carla", "888.777.666.55", "111.222-33", "", "(71)90000-1111", "medicarla@gmail.com",
+                    "14/03/1965", Setor.SAUDE, 6000.0, Estado_civil.DIVORCIADO, Sexo.FEMININO, 
+                    Endereco("Rua Vasco da Gama", "478", "N/D", "123.456.789", "Rio de Janeiro", Unidade_federativa.RIO_DE_JANEIRO), "147852")
+        
+def test_medico_telefone_vazio_invalido_retorna_mensagem_erro():
+    with pytest.raises(TypeError, match="O telefone não deve estar vazio."):
+        Medico(455, "Carla", "888.777.666.55", "111.222-33", "010.123456", "", "medicarla@gmail.com",
+                    "14/03/1965", Setor.SAUDE, 6000.0, Estado_civil.DIVORCIADO, Sexo.FEMININO, 
+                    Endereco("Rua Vasco da Gama", "478", "N/D", "123.456.789", "Rio de Janeiro", Unidade_federativa.RIO_DE_JANEIRO), "147852")
+        
+def test_medico_email_vazio_invalido_retorna_mensagem_erro():
+    with pytest.raises(TypeError, match="O e-mail não deve estar vazio."):
+        Medico(455, "Carla", "888.777.666.55", "111.222-33", "010.123456", "(71)90000-1111", "",
+                    "14/03/1965", Setor.SAUDE, 6000.0, Estado_civil.DIVORCIADO, Sexo.FEMININO, 
+                    Endereco("Rua Vasco da Gama", "478", "N/D", "123.456.789", "Rio de Janeiro", Unidade_federativa.RIO_DE_JANEIRO), "147852")
+        
+def test_medico_data_nascimento_vazio_invalido_retorna_mensagem_erro():
+    with pytest.raises(TypeError, match="A data de nascimento não deve estar vazia."):
+        Medico(455, "Carla", "888.777.666.55", "111.222-33", "010.123456", "(71)90000-1111", "medicarla@gmail.com",
+                    "", Setor.SAUDE, 6000.0, Estado_civil.DIVORCIADO, Sexo.FEMININO, 
+                    Endereco("Rua Vasco da Gama", "478", "N/D", "123.456.789", "Rio de Janeiro", Unidade_federativa.RIO_DE_JANEIRO), "147852")
+        
+
+def test_medico_salario_tipo_invalido_retorna_mensagem_erro():
+    with pytest.raises(TypeError, match="O salário deve ser um número real."):
+        Medico(455, "Carla", "888.777.666.55", "111.222-33", "010.123456", "(71)90000-1111", "medicarla@gmail.com",
+                    "14/03/1965", Setor.SAUDE, "6000.0", Estado_civil.DIVORCIADO, Sexo.FEMININO, 
+                    Endereco("Rua Vasco da Gama", "478", "N/D", "123.456.789", "Rio de Janeiro", Unidade_federativa.RIO_DE_JANEIRO), "147852")
+
+def test_medico_salario_negativo_retorna_mensagem_erro():
+    with pytest.raises(ValueError, match="O salário não deve ser negativo."):
+        Medico(455, "Carla", "888.777.666.55", "111.222-33", "010.123456", "(71)90000-1111", "medicarla@gmail.com",
+                    "14/03/1965", Setor.SAUDE, -6000.0, Estado_civil.DIVORCIADO, Sexo.FEMININO, 
+                    Endereco("Rua Vasco da Gama", "478", "N/D", "123.456.789", "Rio de Janeiro", Unidade_federativa.RIO_DE_JANEIRO), "147852")

@@ -49,7 +49,43 @@ def test_endereco_fornecedor_cidade_valido(fornecedor_valido):
 def test_endereco_fornecedor_uf_valido(fornecedor_valido):
     assert fornecedor_valido.endereco.uf == Unidade_federativa.SAO_PAULO
 
-def test_advogado_oab_vazio_retorna_mensagem_excecao(fornecedor_valido):
-    with pytest.raises(ValueError, match="O que está sendo solicitado está vazio."):
+def test_fornecedor_id_negativa_retorna_mensagem_erro():
+    with pytest.raises(ValueError, match="O id não pode ser negativo."):
+        Fornecedor(-333, "Valeria", "(71)90000-1111", "dorvaleria@gmail.com", "123.654", "15", "Café",
+                            Endereco("Rua Salgueiro", "14", "N/D", "178.147.123", "São Paulo", Unidade_federativa.SAO_PAULO))
+
+def test_fornecedor_id_tipo_invalido_retorna_mensagem_erro():
+    with pytest.raises(TypeError, match="O id deve ser um número inteiro."):
+        Fornecedor("333", "Valeria", "(71)90000-1111", "dorvaleria@gmail.com", "123.654", "15", "Café",
+                            Endereco("Rua Salgueiro", "14", "N/D", "178.147.123", "São Paulo", Unidade_federativa.SAO_PAULO))
+        
+def test_fornecedor_nome_vazio_retorna_mensagem_erro():
+    with pytest.raises(TypeError, match="O nome não deve estar vazio."):
+     Fornecedor(333, "", "(71)90000-1111", "dorvaleria@gmail.com", "123.654", "15", "Café",
+                            Endereco("Rua Salgueiro", "14", "N/D", "178.147.123", "São Paulo", Unidade_federativa.SAO_PAULO))
+
+def test_fornecedor_telefone_vazio_invalido_retorna_mensagem_erro():
+    with pytest.raises(TypeError, match="O telefone não deve estar vazio."):
+        Fornecedor(333, "Valeria", "", "dorvaleria@gmail.com", "123.654", "15", "Café",
+                            Endereco("Rua Salgueiro", "14", "N/D", "178.147.123", "São Paulo", Unidade_federativa.SAO_PAULO))
+        
+def test_fornecedor_email_vazio_invalido_retorna_mensagem_erro():
+    with pytest.raises(TypeError, match="O e-mail não deve estar vazio."):
+        Fornecedor(333, "Valeria", "(71)90000-1111", "", "123.654", "15", "Café",
+                            Endereco("Rua Salgueiro", "14", "N/D", "178.147.123", "São Paulo", Unidade_federativa.SAO_PAULO))
+        
+def test_fornecedor_cnpj_vazio_invalido_retorna_mensagem_erro():
+    with pytest.raises(TypeError, match="O CNPJ não deve estar vazio."):
+        Fornecedor(333, "Valeria", "(71)90000-1111", "dorvaleria@gmail.com", "", "15", "Café",
+                            Endereco("Rua Salgueiro", "14", "N/D", "178.147.123", "São Paulo", Unidade_federativa.SAO_PAULO))
+        
+
+def test_fornecedor_inscricao_estadual_vazio_retorna_mensagem_erro():
+    with pytest.raises(TypeError, match="A inscrição estadual não deve estar vazia."):
+        Fornecedor(333, "Valeria", "(71)90000-1111", "dorvaleria@gmail.com", "123.654", "", "Café",
+                            Endereco("Rua Salgueiro", "14", "N/D", "178.147.123", "São Paulo", Unidade_federativa.SAO_PAULO))
+
+def test_fornecedor_produto_vazio_retorna_mensagem_erro():
+    with pytest.raises(TypeError, match="O produto não deve estar vazio."):
         Fornecedor(333, "Valeria", "(71)90000-1111", "dorvaleria@gmail.com", "123.654", "15", "",
                             Endereco("Rua Salgueiro", "14", "N/D", "178.147.123", "São Paulo", Unidade_federativa.SAO_PAULO))
