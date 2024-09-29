@@ -70,3 +70,9 @@ def test_endereco_engenheiro_uf_valido(engenheiro_valido):
 
 def test_engenheiro_crea_valida(engenheiro_valido):
     assert engenheiro_valido.crea == "4523698"
+
+def test_engenheiro_crea_vazio_retorna_mensagem_excecao(engenheiro_valido):
+    with pytest.raises(ValueError, match="O que está sendo solicitado está vazio."):
+        Engenheiro(566, "Amanda", "999.123.781.21", "147.666-12", "031.123456", "(71)90000-1111", "engamanda@gmail.com",
+                         "03/10/2000", Setor.ENGENHARIA, 5400, Estado_civil.SOLTEIRO, Sexo.FEMININO, 
+                         Endereco("Rua Flores", "15", "N/D", "400.356.236", "São Paulo", Unidade_federativa.SAO_PAULO), "")

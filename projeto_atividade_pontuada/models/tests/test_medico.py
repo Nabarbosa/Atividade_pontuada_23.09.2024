@@ -70,3 +70,9 @@ def test_endereco_medico_uf_valido(medico_valido):
 
 def test_medico_crm_valida(medico_valido):
     assert medico_valido.crm == "147852"
+
+def test_medico_crm_vazio_retorna_mensagem_excecao(medico_valido):
+    with pytest.raises(ValueError, match="O que está sendo solicitado está vazio."):
+        Medico(455, "Carla", "888.777.666.55", "111.222-33", "010.123456", "(71)90000-1111", "medicarla@gmail.com",
+                    "14/03/1965", Setor.SAUDE, 6000, Estado_civil.DIVORCIADO, Sexo.FEMININO, 
+                    Endereco("Rua Vasco da Gama", "478", "N/D", "123.456.789", "Rio de Janeiro", Unidade_federativa.RIO_DE_JANEIRO), "")

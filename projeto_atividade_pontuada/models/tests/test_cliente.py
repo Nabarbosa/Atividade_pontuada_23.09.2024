@@ -54,3 +54,7 @@ def test_endereco_cliente_cidade_valido(cliente_valido):
 def test_endereco_cliente_uf_valido(cliente_valido):
     assert cliente_valido.endereco.uf == Unidade_federativa.BAHIA
 
+def test_protocolo_atendimento_negativa_retorna_mensagem_excecao(cliente_valido):
+    with pytest.raises(ValueError, match="Não pode ser negativa."):
+        Cliente(200, "Marcos", "(71)91111-0000", "temarcos@gmail.com", "21/12/1998", Estado_civil.SEPARADO, Sexo.MASCULINO, 
+                      -145, Endereco("Rua Santos", "468", "N/D", "789.456.123", "Salvador", Unidade_federativa.BAHIA))

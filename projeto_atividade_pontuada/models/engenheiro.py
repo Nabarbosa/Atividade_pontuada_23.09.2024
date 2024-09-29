@@ -5,10 +5,19 @@ from projeto_atividade_pontuada.models.enums.setor import Setor
 from projeto_atividade_pontuada.models.enums.sexo import Sexo
 
 class Engenheiro(Funcionario):
-    def __init__(self, id: int, nome: str, cpf: str, rg: str, matricula: str, telefone: str, email: str, dataNascimento: str, setor: Setor, salario: float, estado_civil: Estado_civil, sexo: Sexo, endereco: Endereco, crea: str) -> None:
+    def __init__(self, id: int, nome: str, cpf: str, rg: str, matricula: str, telefone: str, 
+                 email: str, dataNascimento: str, setor: Setor, salario: float, estado_civil: Estado_civil, 
+                 sexo: Sexo, endereco: Endereco, crea: str) -> None:
         super().__init__(id, nome, cpf, rg, matricula, telefone, email, dataNascimento, setor, salario, estado_civil, sexo, endereco)
 
-        self.crea = crea
+        self.crea = self.__verificar_crea_engenheiro(crea)
+
+    def __verificar_crea_engenheiro(self, crea):
+        if crea == "":
+            raise ValueError("O que está sendo solicitado está vazio.")
+        if not isinstance(crea, str):
+            raise TypeError("valor inválido.")
+        return crea
 
     def __str__(self) -> str:
         return (f"{super().__str__()}"

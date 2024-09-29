@@ -71,4 +71,8 @@ def test_endereco_advogado_uf_valido(advogado_valido):
 def test_advogadoa_OAB_valida(advogado_valido):
     assert advogado_valido.oab == "BA 123456"
 
-
+def test_advogado_oab_vazio_retorna_mensagem_excecao(advogado_valido):
+    with pytest.raises(ValueError, match="O que está sendo solicitado está vazio."):
+        Advogado(211, "João", "456.123.785.21", "147.258-12", "031.145245", "(71)90000-1111", "adivajoao@gmail.com",
+                         "12/07/1982", Setor.JURIDICO, 7200, Estado_civil.CASADO, Sexo.MASCULINO, 
+                         Endereco("Rua S. José", "54", "N/D", "400.156.236", "Salvador", Unidade_federativa.BAHIA), "")

@@ -51,3 +51,13 @@ def test_endereco_prestacao_servico_cidade_valido(prestacao_servico_valido):
 
 def test_endereco_prestacao_servico_uf_valido(prestacao_servico_valido):
     assert prestacao_servico_valido.endereco.uf == Unidade_federativa.SAO_PAULO
+
+def test_contrato_inicio_vazio_retorna_mensagem_excecao(prestacao_servico_valido):
+    with pytest.raises(ValueError, match="O que está sendo solicitado está vazio."):
+        Prestacao_servico(333, "Valeria", "(71)90000-1111", "dorvaleria@gmail.com", "", "20/04/2030", "123.654", "15",
+                            Endereco("Rua Salgueiro", "14", "N/D", "178.147.123", "São Paulo", Unidade_federativa.SAO_PAULO))
+        
+def test_contrato_fim_vazio_retorna_mensagem_excecao(prestacao_servico_valido):
+    with pytest.raises(ValueError, match="O que está sendo solicitado está vazio."):
+        Prestacao_servico(333, "Valeria", "(71)90000-1111", "dorvaleria@gmail.com", "20/04/2000", "", "123.654", "15",
+                            Endereco("Rua Salgueiro", "14", "N/D", "178.147.123", "São Paulo", Unidade_federativa.SAO_PAULO))

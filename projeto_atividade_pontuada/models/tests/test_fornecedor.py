@@ -48,3 +48,8 @@ def test_endereco_fornecedor_cidade_valido(fornecedor_valido):
 
 def test_endereco_fornecedor_uf_valido(fornecedor_valido):
     assert fornecedor_valido.endereco.uf == Unidade_federativa.SAO_PAULO
+
+def test_advogado_oab_vazio_retorna_mensagem_excecao(fornecedor_valido):
+    with pytest.raises(ValueError, match="O que está sendo solicitado está vazio."):
+        Fornecedor(333, "Valeria", "(71)90000-1111", "dorvaleria@gmail.com", "123.654", "15", "",
+                            Endereco("Rua Salgueiro", "14", "N/D", "178.147.123", "São Paulo", Unidade_federativa.SAO_PAULO))
