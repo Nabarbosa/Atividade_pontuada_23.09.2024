@@ -18,21 +18,21 @@ class Pessoa(ABC):
         return id
     
     def __verificar_nome_pessoa(self, nome):
-        if nome == "":
+        if not nome.strip():
             raise ValueError("O que está sendo solicitado está vazio.")
         if not isinstance(nome, str):
             raise TypeError("valor inválido.")
         return nome
     
     def __verificar_telefone_pessoa(self, telefone):
-        if telefone == "":
+        if not telefone.strip():
             raise ValueError("O que está sendo solicitado está vazio.")
         if not isinstance(telefone, str):
             raise TypeError("valor inválido.")
         return telefone
     
     def __verificar_email_pessoa(self, email):
-        if email == "":
+        if not email.strip():
             raise ValueError("O que está sendo solicitado está vazio.")
         if not isinstance(email, str):
             raise TypeError("valor inválido.")
