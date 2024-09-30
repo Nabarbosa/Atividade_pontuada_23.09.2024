@@ -10,35 +10,35 @@ class Endereco:
         self.uf = uf
 
     def __verificar_logradouro_endereco(self, logradouro):
-        if logradouro == "":
+        if not logradouro.strip():
             raise ValueError("O que está sendo solicitado está vazio.")
         if not isinstance(logradouro, str):
             raise TypeError("valor inválido.")
         return logradouro
     
     def __verificar_numero_endereco(self, numero):
-        if numero == "":
+        if not numero.strip():
             raise ValueError("O que está sendo solicitado está vazio.")
         if not isinstance(numero, str):
             raise TypeError("valor inválido.")
         return numero
     
     def __verificar_complemento_endereco(self, complemento):
-        if complemento == "":
+        if not complemento.strip():
             raise ValueError("O que está sendo solicitado está vazio.")
         if not isinstance(complemento, str):
             raise TypeError("valor inválido.")
         return complemento
     
     def __verificar_cep_endereco(self, cep):
-        if cep == "":
+        if not cep.strip():
             raise ValueError("O que está sendo solicitado está vazio.")
         if not isinstance(cep, str):
             raise TypeError("valor inválido.")
         return cep
     
     def __verificar_cidade_endereco(self, cidade):
-        if cidade == "":
+        if not cidade.strip():
             raise ValueError("O que está sendo solicitado está vazio.")
         if not isinstance(cidade, str):
             raise TypeError("valor inválido.")

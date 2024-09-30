@@ -44,22 +44,22 @@ class Cliente(Fisica):
             raise ValueError("O id não pode ser negativo.")
         
     def _verificar_nome_vazio_invalido(self, nome):
-        if nome == "":
+        if not nome.strip():
             raise TypeError("O nome não deve estar vazio.")
         return nome
     
     def _verificar_telefone(self, telefone):
-        if telefone == "":
+        if not telefone.strip():
             raise TypeError("O telefone não deve estar vazio.")
         return telefone
     
     def _verificar_email(self, email):
-        if email == "":
+        if not email.strip():
             raise TypeError("O e-mail não deve estar vazio.")
         return email
     
     def _verificar_data_nascimento(self, dataNascimento):
-        if dataNascimento == "":
+        if not dataNascimento.strip():
             raise TypeError("A data de nascimento não deve estar vazia.")
         return dataNascimento
     

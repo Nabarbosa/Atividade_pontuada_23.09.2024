@@ -48,17 +48,17 @@ class Engenheiro(Funcionario):
             raise ValueError("O id não pode ser negativo.")
         
     def _verificar_nome_vazio_invalido(self, nome):
-        if nome == "":
+        if not nome.strip():
             raise TypeError("O nome não deve estar vazio.")
         return nome
     
     def _verificar_cpf_engenheiro(self, cpf):
-        if cpf == "":
+        if not cpf.strip():
             raise TypeError("O CPF não deve estar vazio.")
         return cpf
     
     def _verificar_rg_engenheiro(self, rg):
-        if rg == "":
+        if not rg.strip():
             raise TypeError("O rg não deve estar vazio.")
         return rg
     
