@@ -63,22 +63,22 @@ class Engenheiro(Funcionario):
         return rg
     
     def _verificar_matricula_engenheiro(self, matricula):
-        if matricula == "":
+        if not matricula.strip():
             raise TypeError("A matricula não deve estar vazia.")
         return matricula
     
     def _verificar_telefone_engenheiro(self, telefone):
-        if telefone == "":
+        if not telefone.strip():
             raise TypeError("O telefone não deve estar vazio.")
         return telefone
     
     def _verificar_email_engenheiro(self, email):
-        if email == "":
+        if not email.strip():
             raise TypeError("O e-mail não deve estar vazio.")
         return email
     
     def _verificar_data_nascimento_engenheiro(self, dataNascimento):
-        if dataNascimento == "":
+        if not dataNascimento.strip():
             raise TypeError("A data de nascimento não deve estar vazia.")
         return dataNascimento
     
@@ -91,7 +91,7 @@ class Engenheiro(Funcionario):
             raise ValueError("O salário não deve ser negativo.")
 
     def __verificar_crea_engenheiro(self, crea):
-        if crea == "":
+        if not crea.strip():
             raise ValueError("O CREA não deve ser vazio.")
         if not isinstance(crea, str):
             raise TypeError("valor inválido.")
