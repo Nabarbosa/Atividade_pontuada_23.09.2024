@@ -5,5 +5,5 @@ class Setor(Enum):
     SAUDE = "Saude"
     JURIDICO = "Juridico"
 
-    def __init__(self, texto: str) -> None:
-        self.texto = texto
+    def __init__(self, texto_setor: str) -> None:
+        self.texto = texto_setor
