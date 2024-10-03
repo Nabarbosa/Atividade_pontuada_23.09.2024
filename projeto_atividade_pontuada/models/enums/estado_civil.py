@@ -1,7 +1,7 @@
 from enum import Enum
 
 class Estado_civil(Enum):
-    SOLTEIRO = "Solteiro"
+    SOLTEIRO = "Solteira"
     CASADO = "Casado"
     SEPARADO = "Separado"
     DIVORCIADO = "Divorciado"
