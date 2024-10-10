@@ -35,6 +35,13 @@ class Advogado(Funcionario):
 
         self.nome = nome
         return self.nome
+    
+    def _verificar_email_advogado(self, email):
+
+        self._verificar_email_vazio(email)
+
+        self.email = email
+        return self.email
 
 
     def _verificar_id_tipo_invalido(self, id):
@@ -69,12 +76,12 @@ class Advogado(Funcionario):
         if not telefone.strip():
             raise TypeError("O telefone não deve estar vazio.")
         return telefone
-    
-    def _verificar_email_advogado(self, email):
+        
+    def _verificar_email_vazio(self, email):
         if not email.strip():
             raise TypeError("O e-mail não deve estar vazio.")
         return email
-    
+        
     def _verificar_data_nascimento_advogado(self, dataNascimento):
         if not dataNascimento.strip():
             raise TypeError("A data de nascimento não deve estar vazia.")

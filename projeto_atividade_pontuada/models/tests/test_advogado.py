@@ -124,7 +124,7 @@ def test_advogado_email_vazio_invalido_retorna_mensagem_erro():
         Advogado(211, "João", "456.123.785.21", "147.258-12", "031.145245", "(71)90000-1111", "",
                          "12/07/1982", Setor.JURIDICO, 7200.0, Estado_civil.CASADO, Sexo.MASCULINO, 
                          Endereco("Rua S. José", "54", "N/D", "400.156.236", "Salvador", Unidade_federativa.BAHIA), "BA 123456")
-        
+     
 def test_advogado_data_nascimento_vazio_invalido_retorna_mensagem_erro():
     with pytest.raises(TypeError, match="A data de nascimento não deve estar vazia."):
         Advogado(211, "João", "456.123.785.21", "147.258-12", "031.145245", "(71)90000-1111", "adivajoao@gmail.com",
